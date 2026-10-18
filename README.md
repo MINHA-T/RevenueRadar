@@ -2,6 +2,9 @@
 
 **E-commerce Customer & Revenue Intelligence**
 
+🌐 **Live dashboard:** [revenueradar-minha.streamlit.app](https://revenueradar-minha.streamlit.app)  
+💻 **Source code:** [GitHub repository](https://github.com/MINHA-T/RevenueRadar)
+
 RevenueRadar turns historical e-commerce transactions into business insights through data cleaning, exploratory data analysis (EDA), RFM customer segmentation, a historical customer-inactivity classification experiment, and an interactive Streamlit dashboard.
 
 ## Features
@@ -90,7 +93,6 @@ The inactivity target was defined using a historical prediction window of Octobe
 - Add automated tests for data processing and dashboard calculations.
 - Compare classification models and report precision, recall, F1-score, and a confusion matrix.
 - Strengthen time-based validation and assess class imbalance.
-- Deploy the dashboard and add the live URL here.
 - Add segment-specific recommendations and further interactive filters.
 
 ## Dataset
