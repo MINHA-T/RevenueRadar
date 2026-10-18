@@ -10,7 +10,7 @@ RevenueRadar turns historical e-commerce transactions into business insights thr
 - EDA of monthly and daily revenue, country performance, top products, customer spending, and purchase frequency.
 - RFM (Recency, Frequency, Monetary) customer segmentation.
 - Random Forest classification experiment for historical customer inactivity.
-- Interactive Streamlit dashboard with KPIs, Plotly charts, customer segments, historical model results, country filtering, and filtered CSV download.
+- Interactive Streamlit dashboard with KPIs, Plotly charts, customer segments, historical model results, country filtering, and a filtered CSV download.
 - Data quality, revenue consistency, and transaction date checks.
 
 ## Tech stack
@@ -33,7 +33,7 @@ Python, Pandas, NumPy, scikit-learn, Plotly, Streamlit, Google Colab, and Visual
 
 ## Run locally
 
-Keep the following files together in the same folder:
+All files below should be in the same folder:
 
 ```text
 RevenueRadar/
@@ -47,7 +47,7 @@ RevenueRadar/
 ```
 
 1. Install Python.
-2. Open a terminal in the project folder and install dependencies:
+2. Open a terminal in this folder and install dependencies:
 
    ```bash
    python -m pip install -r requirements.txt
