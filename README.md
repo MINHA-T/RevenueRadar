@@ -2,116 +2,97 @@
 
 **E-commerce Customer & Revenue Intelligence**
 
-RevenueRadar is a Python data analytics project that transforms historical e-commerce transactions into business insights through data cleaning, exploratory data analysis (EDA), RFM customer segmentation, a historical customer-inactivity classification experiment, and an interactive Streamlit dashboard.
+RevenueRadar turns historical e-commerce transactions into business insights through data cleaning, exploratory data analysis (EDA), RFM customer segmentation, a historical customer-inactivity classification experiment, and an interactive Streamlit dashboard.
 
 ## Features
 
-- **Data cleaning and validation:** investigates duplicates, missing values, cancellations, returns, zero-priced transactions, and unusual records.
-- **Exploratory data analysis:** examines monthly and daily revenue, country performance, top products by quantity and revenue, customer spending, and order frequency.
-- **RFM segmentation:** groups customers using Recency, Frequency, and Monetary value.
-- **Historical inactivity model:** trains a Random Forest classifier on past customer behaviour to predict inactivity in a later historical window.
-- **Interactive dashboard:** presents KPIs, revenue charts, segment distributions, model results, country filtering, and a transaction table.
-- **Export and data checks:** includes validation sections and a download button for filtered sales data.
+- Data cleaning and validation of duplicates, missing values, cancellations, returns, zero-priced transactions, and unusual records.
+- EDA of monthly and daily revenue, country performance, top products, customer spending, and purchase frequency.
+- RFM (Recency, Frequency, Monetary) customer segmentation.
+- Random Forest classification experiment for historical customer inactivity.
+- Interactive Streamlit dashboard with KPIs, Plotly charts, customer segments, historical model results, country filtering, and filtered CSV download.
+- Data quality, revenue consistency, and transaction date checks.
 
-## Technology Stack
+## Tech stack
 
-- Python
-- Pandas and NumPy
-- scikit-learn
-- Plotly
-- Streamlit
-- Google Colab
-- Visual Studio Code
+Python, Pandas, NumPy, scikit-learn, Plotly, Streamlit, Google Colab, and Visual Studio Code.
 
-## Dashboard Metrics
-
-The current local dashboard displays these results:
+## Current dashboard metrics
 
 | Metric | Value |
 |---|---:|
-| Total product-sales revenue | £10,642,110.80 |
+| Product-sales revenue | £10,642,110.80 |
 | Unique invoices | 19,962 |
 | Unique customers | 4,338 |
 | Unique products (StockCode) | 3,922 |
-| Countries represented | 38 |
-| Transaction date range | 1 Dec 2010 – 9 Dec 2011 |
+| Countries | 38 |
+| Cleaned sales rows | 524,878 |
+| Transaction dates | 1 Dec 2010 – 9 Dec 2011 |
 
-The sales dataset used by the dashboard contains **524,878 rows** after cleaning.
+**Revenue note:** The displayed value is the sum of revenue in the cleaned positive-sales dataset. It is not profit or an audited accounting figure.
 
-> **Revenue note:** this value is the sum of revenue in the cleaned positive-sales dataset. It is not profit or an audited accounting figure.
+## Run locally
 
-## Run Locally
-
-### 1. Create the project folder
-
-Keep the following files together in the `RevenueRadar` folder:
+Keep the following files together in the same folder:
 
 ```text
 RevenueRadar/
 ├── app.py
-├── sales_data.csv
+├── sales_data.csv.gz
 ├── rfm_segments.csv
 ├── prediction_results.csv
-├── RevenueRadar.ipynb
+├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
-The notebook is optional for launching the dashboard but documents the analysis workflow.
+1. Install Python.
+2. Open a terminal in the project folder and install dependencies:
 
-### 2. Install dependencies
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
 
-Open a terminal in the project folder and run:
+3. Start the dashboard:
 
-```bash
-python -m pip install streamlit pandas plotly
-```
+   ```bash
+   python -m streamlit run app.py
+   ```
 
-### 3. Launch Streamlit
+4. Open the local URL printed in the terminal, usually `http://localhost:8501`.
 
-```bash
-python -m streamlit run app.py
-```
+Pandas reads `sales_data.csv.gz` directly; do not unzip that file into a CSV for this version of the app.
 
-Open the local URL printed in the terminal, usually **http://localhost:8501**.
-
-## Dashboard Sections
+## Dashboard sections
 
 - Revenue, invoice, customer, and product KPIs
-- Monthly revenue trend
-- Revenue by country
-- Customer segment chart and summary
-- Historical inactivity model evaluation
-- Country selector and sales-data table
-- Data quality and revenue consistency checks
-- Filtered CSV download
+- Monthly revenue and revenue-by-country charts
+- Customer segment distribution and summary
+- Historical inactivity model results
+- Country filter and transaction table
+- Data validation and filtered CSV download
 
-## Model Results and Limitations
+## Model evaluation and limitations
 
-The current dashboard reports **66.16% test accuracy** across **721 historical test customers**. This is a historical held-out test result, not a guarantee of performance on current customers or future transactions.
+The current dashboard reports **66.16% test accuracy** across **721 historical test customers**. This is a held-out result on historical data, not a guarantee of performance on current customers or future transactions.
 
-The inactivity target was constructed using a historical prediction window of October–November 2011, based on customer behaviour from the preceding observation period. RFM segments are rule-based categories, not independently verified customer labels. Feature importance describes how the trained model used its input features; it does not establish causation.
+The inactivity target was defined using a historical prediction window of October–November 2011 and features from an earlier observation period. RFM segments are rule-based categories, not independently verified labels. Feature importance describes how a fitted model used its inputs; it does not establish causation. The dataset ends on 9 December 2011, so December is incomplete and results may not represent present-day e-commerce behaviour.
 
-The dataset ends on **9 December 2011**, so December is incomplete. Results are historical and may not reflect present-day customer behaviour.
+## Selected business insights
 
-## Selected Business Insights
+- The United Kingdom is the dominant market, with about £9.0 million in product-sales revenue.
+- November is the highest-revenue month in the analysed period; December is incomplete.
+- Top-selling products by quantity and top products by revenue are not necessarily the same.
+- Customer segments can help organise retention efforts, while model predictions should be treated as exploratory decision support.
 
-- The United Kingdom is the dominant market in the dataset, contributing approximately £9.0 million in product-sales revenue.
-- November is the highest-revenue month in the analysed period; December is incomplete and should be interpreted cautiously.
-- The product with the highest quantity sold is not necessarily the product with the highest revenue.
-- Customer segmentation can help organise retention efforts, while inactivity predictions should be treated as exploratory decision support.
+## Future improvements
 
-## Possible Future Improvements
-
-- Add automated tests for data cleaning and dashboard metrics.
-- Compare classification models and report precision, recall, F1-score, and the confusion matrix.
-- Strengthen time-based model evaluation and address class imbalance.
-- Deploy the dashboard and document the live URL here.
+- Add automated tests for data processing and dashboard calculations.
+- Compare classification models and report precision, recall, F1-score, and a confusion matrix.
+- Strengthen time-based validation and assess class imbalance.
+- Deploy the dashboard and add the live URL here.
 - Add segment-specific recommendations and further interactive filters.
 
 ## Dataset
 
-The project uses the **Online Retail** transactional dataset from the UCI Machine Learning Repository.
-
----
-
-*RevenueRadar — Python-powered customer and revenue intelligence.*
+The project uses the Online Retail transactional dataset from the UCI Machine Learning Repository.
